@@ -19,7 +19,7 @@ A premium, lightweight, and fully customizable calendar library for **Angular 19
 
 ## ✨ Demo
 
-Check out the live demo [here](https://your-demo-url.com) (or run it locally!).
+Check out the live demo [here](https://HawkerSoftwares.github.io/hss-calendar/) (or run it locally!).
 
 | Light Mode | Dark Mode |
 |:---:|:---:|
@@ -56,6 +56,15 @@ For detailed installation instructions and API reference, please see the [Librar
 2. **Install dependencies**: `npm install`
 3. **Run Library (Watch Mode)**: `npm run lib:watch`
 4. **Run Demo**: `npm start`
+
+### Hosting on GitHub Pages
+To deploy the demo app to GitHub Pages, follow these steps:
+1. Ensure your local changes are committed and pushed to your GitHub repository.
+2. Run the deployment script:
+   ```bash
+   npm run deploy:gh
+   ```
+This script will build the modern library, correctly configure the base path for GitHub subdirectories, and push the static bundle to the `gh-pages` branch.
 
 ---
 

@@ -10,8 +10,9 @@
     "lib:build": "ng build hss-calendar",
     "lib:watch": "ng build hss-calendar --watch",
     "demo:start": "ng serve demo",
-    "build:prod": "ng build hss-calendar && ng build demo --configuration production",
-    "deploy": "npm run build:prod"
+    "build:prod": "ng build hss-calendar && ng build demo --base-href /hss-calendar/ --configuration production",
+    "deploy": "npm run build:prod",
+    "deploy:gh": "npm run build:prod && npx angular-cli-ghpages --dir=dist/demo/browser"
   },
   "prettier": {
     "printWidth": 100,
@@ -41,6 +42,7 @@
     "@angular/build": "^21.1.1",
     "@angular/cli": "^21.0.2",
     "@angular/compiler-cli": "^21.0.0",
+    "angular-cli-ghpages": "^3.0.2",
     "jsdom": "^27.1.0",
     "ng-packagr": "^21.1.0",
     "typescript": "~5.9.2",
