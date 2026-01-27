@@ -19,6 +19,7 @@ export interface HssCalendarConfig {
   weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6; // 0 for Sunday, 1 for Monday, etc.
   showHeader?: boolean;
   dark?: boolean;
+  showOnlyEventsCount?: boolean;
 }
 
 export interface HssCalendarState {

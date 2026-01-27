@@ -65,10 +65,16 @@ import { HssDayViewComponent } from './views/day-view/day-view.component';
             ></hss-month-view>
           }
           @case ('week') {
-            <hss-week-view></hss-week-view>
+            <hss-week-view 
+              (eventClick)="onEventClick($event)"
+              (dateClick)="onDateClick($event)"
+            ></hss-week-view>
           }
           @case ('day') {
-            <hss-day-view></hss-day-view>
+            <hss-day-view 
+              (eventClick)="onEventClick($event)"
+              (dateClick)="onDateClick($event)"
+            ></hss-day-view>
           }
         }
       </div>

@@ -3,8 +3,8 @@
 .hss-week-container {
     @include hss-calendar-theme-variables;
     display: flex;
-    height: 600px;
-    /* Fixed height for scrollable grid */
+    flex: 1;
+    height: 100%;
     overflow: hidden;
     background-color: var(--hss-calendar-bg);
 }
@@ -21,24 +21,31 @@
     height: 60px;
     background-color: var(--hss-calendar-header-bg);
     border-bottom: 1px solid var(--hss-calendar-border);
+    flex-shrink: 0;
+}
+
+.hss-time-slots-container {
+    flex: 1;
+    overflow: hidden;
 }
 
 .hss-time-slot {
     height: 60px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--hss-calendar-other-month-text);
     display: flex;
     justify-content: center;
     align-items: flex-start;
     padding-top: 5px;
     box-sizing: border-box;
+    font-weight: 500;
 }
 
 .hss-days-container {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    min-width: 0;
 }
 
 .hss-days-header {
@@ -46,9 +53,7 @@
     height: 60px;
     background-color: var(--hss-calendar-header-bg);
     border-bottom: 1px solid var(--hss-calendar-border);
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    flex-shrink: 0;
 }
 
 .hss-day-column-header {
@@ -58,34 +63,61 @@
     align-items: center;
     justify-content: center;
     border-right: 1px solid var(--hss-calendar-border);
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: var(--hss-calendar-hover-bg);
+    }
 
     .day-name {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         text-transform: uppercase;
         color: var(--hss-calendar-other-month-text);
+        font-weight: 600;
     }
 
     .day-number {
         font-size: 1.1rem;
-        font-weight: 600;
+        font-weight: 700;
 
         &.hss-today {
             background-color: var(--hss-calendar-today-text);
             color: #fff;
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
+            margin-top: 2px;
         }
+    }
+}
+
+.hss-grid-scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    position: relative;
+
+    // Sync scroll between time column and grid
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--hss-calendar-border);
+        border-radius: 4px;
     }
 }
 
 .hss-grid-container {
     display: flex;
-    position: relative;
-    flex-grow: 1;
+    min-height: 1440px; // 24 hours * 60px
 }
 
 .hss-day-column {
@@ -113,7 +145,7 @@
     position: absolute;
     left: 2px;
     right: 2px;
-    padding: 4px;
+    padding: 2px 6px;
     font-size: 0.75rem;
     border-radius: 4px;
     overflow: hidden;
@@ -121,11 +153,21 @@
     white-space: nowrap;
     pointer-events: auto;
     cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    opacity: 0.9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-left: 3px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    transition: transform 0.1s, box-shadow 0.1s;
 
     &:hover {
         z-index: 5;
-        opacity: 1;
+        transform: scale(1.02);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .event-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }

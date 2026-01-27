@@ -5,9 +5,11 @@
     @include hss-calendar-theme-variables;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto auto auto auto auto auto; // Approximate 6 rows
     border-top: 1px solid var(--hss-calendar-border);
     border-left: 1px solid var(--hss-calendar-border);
     background-color: var(--hss-calendar-bg);
+    flex: 1;
 }
 
 .hss-weekday-header {
@@ -23,7 +25,7 @@
 }
 
 .hss-day-cell {
-    min-height: 120px;
+    min-height: 60px;
     padding: 5px;
     border-right: 1px solid var(--hss-calendar-border);
     border-bottom: 1px solid var(--hss-calendar-border);
@@ -32,6 +34,10 @@
 
     &:hover {
         background-color: var(--hss-calendar-hover-bg);
+    }
+
+    &.cursor-pointer {
+        cursor: pointer;
     }
 
     &.hss-today {
@@ -70,4 +76,24 @@
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
+}
+
+.hss-events-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--hss-calendar-event-bg);
+    color: var(--hss-calendar-event-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin: 4px auto 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 }

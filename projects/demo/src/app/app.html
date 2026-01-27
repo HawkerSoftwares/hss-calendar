@@ -2,6 +2,9 @@
   <header class="demo-header">
     <h1>hss-calendar Demo</h1>
     <div class="demo-actions">
+      <button (click)="toggleAddForm()" class="demo-btn">
+        {{ showAddForm() ? 'Cancel' : '➕ Add Event' }}
+      </button>
       <button (click)="toggleDark()" class="demo-btn">
         {{ config().dark ? '☀️ Light Mode' : '🌙 Dark Mode' }}
       </button>
@@ -9,16 +12,63 @@
   </header>
 
   <main class="demo-content">
-    <hss-calendar [events]="events()" [config]="config()" (eventClicked)="onEventSelected($event)"
-      (dateClicked)="onDateSelected($event)"></hss-calendar>
+    <div *ngIf="showAddForm()" class="hss-modal-backdrop" (click)="toggleAddForm()">
+      <div class="hss-modal-content" (click)="$event.stopPropagation()">
+        <div class="hss-modal-header">
+          <h3>{{ isEditing() ? 'Edit Event' : 'Add New Event' }}</h3>
+          <button class="close-btn" (click)="toggleAddForm()">&times;</button>
+        </div>
+        <div class="hss-modal-body">
+          <div class="form-group">
+            <label>Event Title</label>
+            <input type="text" [(ngModel)]="newEvent().title" placeholder="Enter title...">
+          </div>
+          <div class="form-group">
+            <label>Start Date</label>
+            <input type="date" [(ngModel)]="newEvent().startDate" (ngModelChange)="onStartDateChange()">
+          </div>
+          <div class="form-group" *ngIf="newEvent().startDate">
+            <label>End Date</label>
+            <input type="date" [(ngModel)]="newEvent().endDate" [min]="newEvent().startDate">
+          </div>
+          <div class="form-group">
+            <label>Event Color</label>
+            <input type="color" [(ngModel)]="newEvent().color">
+          </div>
+        </div>
+        <div class="hss-modal-footer">
+          <button (click)="toggleAddForm()" class="demo-btn secondary">Cancel</button>
+          <button (click)="addEvent()" class="demo-btn primary">{{ isEditing() ? 'Update Event' : 'Save Event'
+            }}</button>
+        </div>
+      </div>
+    </div>
+    <hss-calendar [events]="events()" [config]="config()" (dateClicked)="onDateSelected($event)">
+    </hss-calendar>
+    <div class="demo-sidebar" *ngIf="selectedEvent() || selectedDateEvents()">
+      <ng-container *ngIf="selectedDateEvents()">
+        <h3>Events for {{ selectedDateEvents()?.date | date:'mediumDate' }}</h3>
+        <div class="events-list">
+          <div *ngIf="selectedDateEvents()?.events?.length === 0" class="no-events">
+            No events for this day.
+          </div>
+          <div *ngFor="let event of selectedDateEvents()?.events" class="event-card list-item"
+            [style.border-left]="'4px solid ' + event.backgroundColor">
+            <div class="event-card-content" (click)="onEventSelected(event)">
+              <p><strong>Title:</strong> {{ event?.title }}</p>
+              <p><strong>Start:</strong> {{ event?.start | date:'medium' }}</p>
+              <p><strong>End:</strong> {{ event?.end | date:'medium' }}</p>
+            </div>
+            <div class="event-card-actions">
+              <button (click)="$event.stopPropagation(); editEvent(event)" class="icon-btn edit"
+                title="Edit">✏️</button>
+              <button (click)="$event.stopPropagation(); deleteEvent(event.id)" class="icon-btn delete"
+                title="Delete">🗑️</button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
   </main>
 
-  <aside class="demo-sidebar" *ngIf="selectedEvent()">
-    <h3>Event Details</h3>
-    <div class="event-card">
-      <p><strong>Title:</strong> {{ selectedEvent()?.title }}</p>
-      <p><strong>Start:</strong> {{ selectedEvent()?.start | date:'medium' }}</p>
-      <p><strong>End:</strong> {{ selectedEvent()?.end | date:'medium' }}</p>
-    </div>
-  </aside>
 </div>

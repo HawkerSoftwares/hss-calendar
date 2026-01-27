@@ -11,7 +11,8 @@ export class HssCalendarStore {
             locale: 'en-US',
             weekStartsOn: 0,
             showHeader: true,
-            dark: false
+            dark: false,
+            showOnlyEventsCount: false
         }
     });
 

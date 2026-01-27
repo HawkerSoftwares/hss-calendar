@@ -10,6 +10,8 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    height: 100%; // Ensure it tries to fill parent height
+    min-height: 400px; // Minimum fallback height
 
     .hss-calendar-header {
         display: flex;
@@ -18,10 +20,19 @@
         padding: 15px 20px;
         background-color: var(--hss-calendar-header-bg);
         border-bottom: 1px solid var(--hss-calendar-border);
+        flex-shrink: 0; // Prevent header from shrinking
+    }
+
+    .hss-calendar-body {
+        flex: 1;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
     }
 
     &.calendar-month-view {
         border: none;
+
         .hss-calendar-header {
             border: 1px solid var(--hss-calendar-border);
             border-bottom: none;
@@ -29,7 +40,6 @@
             border-top-right-radius: inherit;
         }
     }
-
 }
 
 .hss-calendar-title {

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, computed, inject, TemplateRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, computed, inject, TemplateRef, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HssCalendarStore } from '../../services/calendar.store';
 import { HssDateUtils } from '../../utils/date-utils';
@@ -19,6 +19,7 @@ import { HssCalendarEvent } from '../../models/calendar.models';
           class="hss-day-cell" 
           [class.hss-today]="isToday(date)"
           [class.hss-other-month]="!isSameMonth(date)"
+          [class.cursor-pointer]="getEventsForDay(date).length"
           (click)="onDateClick(date)"
         >
           @if (dayCellTemplate) {
@@ -26,18 +27,24 @@ import { HssCalendarEvent } from '../../models/calendar.models';
           } @else {
             <div class="hss-day-number">{{ date.getDate() }}</div>
             <div class="hss-events-container">
-              @for (event of getEventsForDay(date); track event.id) {
-                @if (eventTemplate) {
-                  <ng-container [ngTemplateOutlet]="eventTemplate" [ngTemplateOutletContext]="{ $implicit: event }"></ng-container>
-                } @else {
-                  <div 
-                    class="hss-event" 
-                    [style.background-color]="event.backgroundColor"
-                    [style.color]="event.textColor"
-                    (click)="$event.stopPropagation(); onEventClick(event)"
-                  >
-                    {{ event.title }}
-                  </div>
+              @if (store.config()?.showOnlyEventsCount) {
+                <div class="hss-events-badge" *ngIf="getEventsForDay(date).length">
+                  {{ getEventsForDay(date).length }}
+                </div>
+              } @else {
+                @for (event of getEventsForDay(date); track event.id) {
+                  @if (eventTemplate) {
+                    <ng-container [ngTemplateOutlet]="eventTemplate" [ngTemplateOutletContext]="{ $implicit: event }"></ng-container>
+                  } @else {
+                    <div 
+                      class="hss-event" 
+                      [style.background-color]="event.backgroundColor"
+                      [style.color]="event.textColor"
+                      (click)="$event.stopPropagation(); onEventClick(event)"
+                    >
+                      {{ event.title }}
+                    </div>
+                  }
                 }
               }
             </div>
@@ -49,8 +56,7 @@ import { HssCalendarEvent } from '../../models/calendar.models';
   styleUrl: './month-view.component.scss'
 })
 export class HssMonthViewComponent {
-  private readonly store = inject(HssCalendarStore);
-
+  protected readonly store = inject(HssCalendarStore);
   @Input() dayCellTemplate?: TemplateRef<any>;
   @Input() eventTemplate?: TemplateRef<any>;
 
