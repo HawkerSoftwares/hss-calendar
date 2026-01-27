@@ -1,23 +1,41 @@
+<div align="center">
+  <a href="https://brainzo.fun">
+    <img src="https://raw.githubusercontent.com/HawkerSoftwares/hss-calendar/main/projects/demo/screenshots/brainzo_banner.png" width="100%" alt="Brainzo - Kids Learning App">
+  </a>
+  <p>
+    <strong>Looking for a fun way for kids to learn?</strong><br>
+    Check out <a href="https://brainzo.fun">Brainzo.fun</a> - The ultimate kids learning app for ages 4-15!<br>
+    <i>Quizzes • Puzzles • Alphabet Games • Number Activities • Offline Support</i>
+  </p>
+</div>
+
+---
+
 # hss-calendar
 
 A lightweight, fully customizable, responsive, and Angular-native calendar library for Angular 17+.
 
-## Features
+## 🚀 Recent Updates
+- **Multi-day Events**: Full support for start and end dates.
+- **Improved Views**: Enhanced Week and Day views with sticky headers and better scroll performance.
+- **Event Badges**: New compact badge mode for Month view to avoid clutter.
+- **Premium Themes**: Refined Light and Dark mode variables for a high-end dashboard feel.
 
-- 📅 **Month, Week, and Day Views**: Switch between views at runtime.
-- 🎨 **100% Customizable**: Override header, day cells, and events via `ng-template`.
-- 🌓 **Theming**: Built-in support for Light and Dark modes using CSS variables.
-- ⚡ **Performance**: Standalone components and Angular Signals for reactive state management.
-- 📱 **Responsive**: Mobile-first design that adapts to all screen sizes.
-- ⌨️ **Accessible**: Proper ARIA support for enterprise-grade apps.
+## 📦 Features
 
-## Installation
+- 📅 **View Modes**: High-performance Month, Week, and Day views.
+- 🎨 **Templates**: Use `#dayCellTemplate` and `#eventTemplate` for total UI control.
+- 🌓 **Theming**: Dark mode support via CSS variables.
+- ⚡ **Signals**: Built using the latest Angular Signals for modern reactive state.
+- 📱 **Responsive**: Mobile-first design for a seamless cross-device experience.
+
+## 🛠 Installation
 
 ```bash
 npm install hss-calendar
 ```
 
-## Usage
+## 📖 Basic Usage
 
 1. **Import the component**:
 
@@ -38,85 +56,76 @@ import { HssCalendarComponent } from 'hss-calendar';
   `
 })
 export class AppComponent {
-  events = [
+  events = signal<HssCalendarEvent[]>([
     {
       id: 1,
-      title: 'Success Meeting',
-      start: new Date(),
-      end: new Date(),
-      backgroundColor: '#4caf50'
+      title: 'Project Launch',
+      start: new Date('2026-01-27'),
+      end: new Date('2026-01-28'),
+      backgroundColor: '#1976d2'
     }
-  ];
+  ]);
 
   config = {
     dark: false,
-    locale: 'en-US'
+    locale: 'en-US',
+    showOnlyEventsCount: false // Set to true for badge mode
   };
 
-  onEventSelected(event: any) {
-    console.log('Event clicked:', event);
+  onEventSelected(event: HssCalendarEvent) {
+    console.log('Selected:', event.title);
   }
 
   onDateSelected(date: Date) {
-    console.log('Date clicked:', date);
+    console.log('Selected Date:', date);
   }
 }
 ```
 
-## Custom Templates
+## 🎨 Advanced Customization
 
-You can customize the look of the calendar using named templates:
+### Theming
+Override variables in your `global.scss` or `styles.css`:
 
+```scss
+:root {
+  --hss-calendar-bg: #ffffff;
+  --hss-calendar-border: #e2e8f0;
+  --hss-calendar-today-text: #1976d2;
+  /* Dark mode overrides */
+  &[data-theme='dark'] {
+    --hss-calendar-bg: #0f172a;
+  }
+}
+```
+
+### Templates
 ```html
 <hss-calendar [events]="events">
-  <!-- Custom Header -->
-  <ng-template #headerTemplate>
-    <div class="custom-header">My Custom Header</div>
-  </ng-template>
-
-  <!-- Custom Day Cell -->
-  <ng-template #dayCellTemplate let-date>
-    <div class="custom-day">{{ date | date:'d' }}</div>
-  </ng-template>
-
-  <!-- Custom Event UI -->
   <ng-template #eventTemplate let-event>
-    <div class="custom-event">🚀 {{ event.title }}</div>
+    <div class="my-event-card">
+      📍 {{ event.title }}
+    </div>
   </ng-template>
 </hss-calendar>
 ```
 
-## Theming
-
-hss-calendar uses CSS variables for theming. You can override them in your global styles:
-
-```css
-:root {
-  --hss-calendar-bg: #ffffff;
-  --hss-calendar-text: #333333;
-  --hss-calendar-event-bg: #1976d2;
-  /* ... more variables available in src/lib/styles/_variables.scss */
-}
-```
-
-## API
+## 📋 API Reference
 
 ### Inputs
-
-| Input | Type | Description |
-|-------|------|-------------|
-| `view` | `'month' \| 'week' \| 'day'` | Current view mode (default: `'month'`) |
-| `events` | `HssCalendarEvent[]` | List of events to display |
-| `config` | `Partial<HssCalendarConfig>` | Calendar configuration (locale, dark mode, etc.) |
+| Property | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `events` | `HssCalendarEvent[]` | `[]` | Array of event objects |
+| `view` | `'month' \| 'week' \| 'day'` | `'month'` | Current calendar view |
+| `config` | `Partial<HssCalendarConfig>` | `{}` | Settings (locale, dark, showOnlyEventsCount, etc.) |
 
 ### Outputs
+| Event | Type | Description |
+| :--- | :--- | :--- |
+| `eventClicked` | `EventEmitter<HssCalendarEvent>` | Emits when an event block is clicked |
+| `dateClicked` | `EventEmitter<Date>` | Emits when a day cell is clicked |
+| `viewChanged` | `EventEmitter<HssCalendarView>` | Emits when the user switches view mode |
 
-| Output | Type | Description |
-|--------|------|-------------|
-| `viewChanged` | `EventEmitter<HssCalendarView>` | Fired when the view mode changes |
-| `dateClicked` | `EventEmitter<Date>` | Fired when a date cell is clicked |
-| `eventClicked` | `EventEmitter<HssCalendarEvent>` | Fired when an event is clicked |
+---
 
-## Credits
-
-Developed by the Hawker Team.
+Developed by **Hawker Team**.

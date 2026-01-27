@@ -1,59 +1,62 @@
-# HssCalendarWorkspace
+<div align="center">
+  <a href="https://brainzo.fun">
+    <img src="https://raw.githubusercontent.com/HawkerSoftwares/hss-calendar/main/projects/demo/screenshots/brainzo_banner.png" width="100%" alt="Brainzo - Kids Learning App">
+  </a>
+  <h3>🚀 Discover Brainzo.fun</h3>
+  <p>
+    <strong>Looking for a fun way for kids to learn?</strong><br>
+    The ultimate kids learning app for ages 4-15!<br>
+    <i>Quizzes • Puzzles • Alphabet Games • Number Activities • Offline Support</i>
+  </p>
+  <a href="https://brainzo.fun"><b>Visit Brainzo.fun →</b></a>
+</div>
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.2.
+---
 
-## Development server
+# HSS Calendar 📅
 
-To start a local development server, run:
+A premium, lightweight, and fully customizable calendar library for **Angular 19+**. Designed with productivity in mind, it provides a seamless experience for managing events while being visually stunning in both light and dark modes.
 
-```bash
-ng serve
-```
+## ✨ Demo
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Check out the live demo [here](https://your-demo-url.com) (or run it locally!).
 
-## Code scaffolding
+| Light Mode | Dark Mode |
+|:---:|:---:|
+| ![Light Mode Screenshot](https://raw.githubusercontent.com/HawkerSoftwares/hss-calendar/main/projects/demo/screenshots/light.png) | ![Dark Mode Screenshot](https://raw.githubusercontent.com/HawkerSoftwares/hss-calendar/main/projects/demo/screenshots/dark.png) |
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🚀 Key Features
 
-```bash
-ng generate component component-name
-```
+- 📅 **Integrated Views**: Seamlessly switch between Month, Week, and Day views.
+- 🌓 **Dynamic Theming**: Native Dark Mode support with premium CSS variable-based styling.
+- ⚡ **Modern Stack**: Powered by **Angular Signals** for lightning-fast reactive updates.
+- 🎨 **Templates**: Complete control over header, day cells, and event displays using `ng-template`.
+- 📱 **Mobile Optimized**: Fully responsive layout that adapts to any screen size.
+- ➕ **Event Management**: Built-in support for event creation, editing, and deletion.
+- 🌈 **Event Customization**: Support for custom colors, badges, and multi-day durations.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 📂 Project Structure
 
-```bash
-ng generate --help
-```
+- `projects/hss-calendar`: The core library source code.
+- `projects/demo`: A full-featured application showcasing the library's capabilities.
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+## 🛠 Installation
 
 ```bash
-ng e2e
+npm install hss-calendar
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 📖 Documentation
 
-## Additional Resources
+For detailed installation instructions and API reference, please see the [Library README](./projects/hss-calendar/README.md).
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 💻 Development
+
+1. **Clone the repo**
+2. **Install dependencies**: `npm install`
+3. **Run Library (Watch Mode)**: `npm run lib:watch`
+4. **Run Demo**: `npm start`
+
+---
+
+Developed with ❤️ by **Hawker team**.
