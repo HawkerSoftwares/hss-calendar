@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://brainzo.fun">
-    <img src="https://raw.githubusercontent.com/HawkerSoftwares/hss-calendar/main/projects/demo/screenshots/brainzo_banner.png" width="100%" alt="Brainzo - Kids Learning App">
+    <img src="https://raw.githubusercontent.com/HawkerSoftwares/hss-calendar/main/projects/demo/screenshots/brainzo_banner.png" width="600" alt="Brainzo - Kids Learning App">
   </a>
   <h3>🚀 Discover Brainzo.fun</h3>
   <p>
