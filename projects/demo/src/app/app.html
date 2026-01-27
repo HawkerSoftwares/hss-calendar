@@ -1,0 +1,24 @@
+<div class="demo-container" [attr.data-theme]="config().dark ? 'dark' : 'light'">
+  <header class="demo-header">
+    <h1>hss-calendar Demo</h1>
+    <div class="demo-actions">
+      <button (click)="toggleDark()" class="demo-btn">
+        {{ config().dark ? '☀️ Light Mode' : '🌙 Dark Mode' }}
+      </button>
+    </div>
+  </header>
+
+  <main class="demo-content">
+    <hss-calendar [events]="events()" [config]="config()" (eventClicked)="onEventSelected($event)"
+      (dateClicked)="onDateSelected($event)"></hss-calendar>
+  </main>
+
+  <aside class="demo-sidebar" *ngIf="selectedEvent()">
+    <h3>Event Details</h3>
+    <div class="event-card">
+      <p><strong>Title:</strong> {{ selectedEvent()?.title }}</p>
+      <p><strong>Start:</strong> {{ selectedEvent()?.start | date:'medium' }}</p>
+      <p><strong>End:</strong> {{ selectedEvent()?.end | date:'medium' }}</p>
+    </div>
+  </aside>
+</div>

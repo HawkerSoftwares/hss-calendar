@@ -1,0 +1,131 @@
+@import '../../styles/variables';
+
+.hss-week-container {
+    @include hss-calendar-theme-variables;
+    display: flex;
+    height: 600px;
+    /* Fixed height for scrollable grid */
+    overflow: hidden;
+    background-color: var(--hss-calendar-bg);
+}
+
+.hss-time-column {
+    width: 60px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--hss-calendar-border);
+    display: flex;
+    flex-direction: column;
+}
+
+.hss-time-header {
+    height: 60px;
+    background-color: var(--hss-calendar-header-bg);
+    border-bottom: 1px solid var(--hss-calendar-border);
+}
+
+.hss-time-slot {
+    height: 60px;
+    font-size: 0.75rem;
+    color: var(--hss-calendar-other-month-text);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 5px;
+    box-sizing: border-box;
+}
+
+.hss-days-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.hss-days-header {
+    display: flex;
+    height: 60px;
+    background-color: var(--hss-calendar-header-bg);
+    border-bottom: 1px solid var(--hss-calendar-border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.hss-day-column-header {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid var(--hss-calendar-border);
+
+    .day-name {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: var(--hss-calendar-other-month-text);
+    }
+
+    .day-number {
+        font-size: 1.1rem;
+        font-weight: 600;
+
+        &.hss-today {
+            background-color: var(--hss-calendar-today-text);
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+    }
+}
+
+.hss-grid-container {
+    display: flex;
+    position: relative;
+    flex-grow: 1;
+}
+
+.hss-day-column {
+    flex: 1;
+    position: relative;
+    border-right: 1px solid var(--hss-calendar-border);
+}
+
+.hss-grid-slot {
+    height: 60px;
+    border-bottom: 1px solid var(--hss-calendar-border);
+    box-sizing: border-box;
+}
+
+.hss-events-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.hss-event {
+    position: absolute;
+    left: 2px;
+    right: 2px;
+    padding: 4px;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    pointer-events: auto;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    opacity: 0.9;
+
+    &:hover {
+        z-index: 5;
+        opacity: 1;
+    }
+}

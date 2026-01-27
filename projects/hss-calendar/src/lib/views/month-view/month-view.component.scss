@@ -1,0 +1,73 @@
+@import '../../styles/variables';
+
+
+.hss-month-grid {
+    @include hss-calendar-theme-variables;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-top: 1px solid var(--hss-calendar-border);
+    border-left: 1px solid var(--hss-calendar-border);
+    background-color: var(--hss-calendar-bg);
+}
+
+.hss-weekday-header {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    background-color: var(--hss-calendar-header-bg);
+    color: var(--hss-calendar-header-text);
+    border-right: 1px solid var(--hss-calendar-border);
+    border-bottom: 1px solid var(--hss-calendar-border);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.hss-day-cell {
+    min-height: 120px;
+    padding: 5px;
+    border-right: 1px solid var(--hss-calendar-border);
+    border-bottom: 1px solid var(--hss-calendar-border);
+    position: relative;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: var(--hss-calendar-hover-bg);
+    }
+
+    &.hss-today {
+        background-color: var(--hss-calendar-today-bg);
+
+        .hss-day-number {
+            color: var(--hss-calendar-today-text);
+            font-weight: bold;
+        }
+    }
+
+    &.hss-other-month {
+        color: var(--hss-calendar-other-month-text);
+        background-color: var(--hss-calendar-weekend-bg);
+    }
+}
+
+.hss-day-number {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.hss-events-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.hss-event {
+    font-size: 0.75rem;
+    padding: 2px 4px;
+    border-radius: 3px;
+    background-color: var(--hss-calendar-event-bg);
+    color: var(--hss-calendar-event-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
