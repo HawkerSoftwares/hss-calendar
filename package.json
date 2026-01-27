@@ -12,7 +12,8 @@
     "demo:start": "ng serve demo",
     "build:prod": "ng build hss-calendar && ng build demo --base-href /hss-calendar/ --configuration production",
     "deploy": "npm run build:prod",
-    "deploy:gh": "npm run build:prod && npx angular-cli-ghpages --dir=dist/demo/browser"
+    "deploy:gh": "npm run build:prod && npx angular-cli-ghpages --dir=dist/demo/browser",
+    "lib:publish": "npm run lib:build && cd dist/hss-calendar && npm publish --access public"
   },
   "prettier": {
     "printWidth": 100,

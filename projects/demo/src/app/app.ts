@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HssCalendarComponent, HssCalendarEvent, HssCalendarConfig } from 'hss-calendar';
+import { HssCalendarComponent, HssCalendarEvent, HssCalendarConfig } from '@hss-m/calendar';
 import { FormsModule } from '@angular/forms';
 
 @Component({

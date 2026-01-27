@@ -43,7 +43,7 @@ Check out the live demo [here](https://HawkerSoftwares.github.io/hss-calendar/) 
 ## 🛠 Installation
 
 ```bash
-npm install hss-calendar
+npm install @hss-m/calendar
 ```
 
 ## 📖 Documentation

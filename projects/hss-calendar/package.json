@@ -1,9 +1,28 @@
 {
-  "name": "hss-calendar",
-  "version": "0.0.1",
+  "name": "@hss-m/calendar",
+  "version": "1.0.0",
+  "description": "A premium, lightweight, fully customizable, and responsive Angular calendar library with support for Month, Week, and Day views.",
+  "keywords": [
+    "angular",
+    "calendar",
+    "scheduler",
+    "datepicker",
+    "events",
+    "hss",
+    "responsive",
+    "dark-mode",
+    "angular-signals"
+  ],
+  "author": "Hawker Team",
+  "license": "MIT",
+  "homepage": "https://HawkerSoftwares.github.io/hss-calendar/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HawkerSoftwares/hss-calendar.git"
+  },
   "peerDependencies": {
-    "@angular/common": "^21.1.0",
-    "@angular/core": "^21.1.0"
+    "@angular/common": "^17.0.0 || ^18.0.0 || ^19.0.0 || ^21.0.0",
+    "@angular/core": "^17.0.0 || ^18.0.0 || ^19.0.0 || ^21.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

@@ -11,7 +11,7 @@
 
 ---
 
-# hss-calendar
+# @hss-m/calendar
 
 A lightweight, fully customizable, responsive, and Angular-native calendar library for Angular 17+.
 
@@ -32,7 +32,7 @@ A lightweight, fully customizable, responsive, and Angular-native calendar libra
 ## 🛠 Installation
 
 ```bash
-npm install hss-calendar
+npm install @hss-m/calendar
 ```
 
 ## 📖 Basic Usage
@@ -40,7 +40,7 @@ npm install hss-calendar
 1. **Import the component**:
 
 ```typescript
-import { HssCalendarComponent } from 'hss-calendar';
+import { HssCalendarComponent } from '@hss-m/calendar';
 
 @Component({
   selector: 'app-root',
