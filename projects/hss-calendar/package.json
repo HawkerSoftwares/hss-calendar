@@ -1,6 +1,6 @@
 {
   "name": "@hss-m/calendar",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A premium, lightweight, fully customizable, and responsive Angular calendar library with support for Month, Week, and Day views.",
   "keywords": [
     "angular",
