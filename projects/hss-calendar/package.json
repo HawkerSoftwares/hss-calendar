@@ -1,6 +1,6 @@
 {
   "name": "@hss-m/calendar",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "A premium, lightweight, fully customizable, and responsive Angular calendar library with support for Month, Week, and Day views.",
   "keywords": [
     "angular",
@@ -15,6 +15,10 @@
   ],
   "author": "Hawker Team",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "homepage": "https://HawkerSoftwares.github.io/hss-calendar/",
   "repository": {
     "type": "git",

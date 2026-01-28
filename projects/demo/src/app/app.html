@@ -1,74 +1,120 @@
-<div class="demo-container" [attr.data-theme]="config().dark ? 'dark' : 'light'">
-  <header class="demo-header">
-    <h1>HSS Calendar Demo</h1>
-    <div class="demo-actions">
-      <button (click)="toggleAddForm()" class="demo-btn">
-        {{ showAddForm() ? 'Cancel' : '➕ Add Event' }}
-      </button>
-      <button (click)="toggleDark()" class="demo-btn">
-        {{ config().dark ? '☀️ Light Mode' : '🌙 Dark Mode' }}
-      </button>
-    </div>
-  </header>
-
-  <main class="demo-content">
-    <div *ngIf="showAddForm()" class="hss-modal-backdrop" (click)="toggleAddForm()">
-      <div class="hss-modal-content" (click)="$event.stopPropagation()">
-        <div class="hss-modal-header">
-          <h3>{{ isEditing() ? 'Edit Event' : 'Add New Event' }}</h3>
-          <button class="close-btn" (click)="toggleAddForm()">&times;</button>
-        </div>
-        <div class="hss-modal-body">
-          <div class="form-group">
-            <label>Event Title</label>
-            <input type="text" [(ngModel)]="newEvent().title" placeholder="Enter title...">
+<div class="page-wrapper" [attr.data-theme]="config().dark ? 'dark' : 'light'">
+  <!-- Left Ad Column -->
+  <aside class="ad-column left-ad">
+    <a href="https://brainzo.fun" target="_blank" class="ad-link">
+      <div class="ad-banner brainzo-banner">
+        <div class="ad-content">
+          <div class="bz-logo">
+            <img src="https://brainzo.fun/icons/icon-192x192.png" alt="Brainzo Logo">
+            <span class="bz-text">Brainzo</span>
           </div>
-          <div class="form-group">
-            <label>Start Date</label>
-            <input type="date" [(ngModel)]="newEvent().startDate" (ngModelChange)="onStartDateChange()">
+          <div class="bz-badge">Let's Play!</div>
+          <h3 class="bz-title">Games That Grow Minds</h3>
+          <div class="bz-games-list">
+            <span>• Quiz Adventure</span>
+            <span>• Math Ninja</span>
+            <span>• Word Builder</span>
+            <span>• Alphabet Pop</span>
+            <span>• Memory Match</span>
           </div>
-          <div class="form-group" *ngIf="newEvent().startDate">
-            <label>End Date</label>
-            <input type="date" [(ngModel)]="newEvent().endDate" [min]="newEvent().startDate">
-          </div>
-          <div class="form-group">
-            <label>Event Color</label>
-            <input type="color" [(ngModel)]="newEvent().color">
-          </div>
-        </div>
-        <div class="hss-modal-footer">
-          <button (click)="toggleAddForm()" class="demo-btn secondary">Cancel</button>
-          <button (click)="addEvent()" class="demo-btn primary">{{ isEditing() ? 'Update Event' : 'Save Event'
-            }}</button>
+          <div class="bz-button">Start Adventure</div>
+          <div class="bz-footer">brainzo.fun</div>
         </div>
       </div>
-    </div>
-    <hss-calendar [events]="events()" [config]="config()" (dateClicked)="onDateSelected($event)">
-    </hss-calendar>
-    <div class="demo-sidebar" *ngIf="selectedEvent() || selectedDateEvents()">
-      <ng-container *ngIf="selectedDateEvents()">
-        <h3>Events for {{ selectedDateEvents()?.date | date:'mediumDate' }}</h3>
-        <div class="events-list">
-          <div *ngIf="selectedDateEvents()?.events?.length === 0" class="no-events">
-            No events for this day.
+    </a>
+  </aside>
+
+  <!-- Main Demo Content -->
+  <div class="demo-container">
+    <header class="demo-header">
+      <h1>HSS Calendar Demo</h1>
+      <div class="demo-actions">
+        <button (click)="toggleAddForm()" class="demo-btn">
+          {{ showAddForm() ? 'Cancel' : '➕ Add Event' }}
+        </button>
+        <button (click)="toggleDark()" class="demo-btn">
+          {{ config().dark ? '☀️ Light Mode' : '🌙 Dark Mode' }}
+        </button>
+      </div>
+    </header>
+
+    <main class="demo-content">
+      <div *ngIf="showAddForm()" class="hss-modal-backdrop" (click)="toggleAddForm()">
+        <div class="hss-modal-content" (click)="$event.stopPropagation()">
+          <div class="hss-modal-header">
+            <h3>{{ isEditing() ? 'Edit Event' : 'Add New Event' }}</h3>
+            <button class="close-btn" (click)="toggleAddForm()">&times;</button>
           </div>
-          <div *ngFor="let event of selectedDateEvents()?.events" class="event-card list-item"
-            [style.border-left]="'4px solid ' + event.backgroundColor">
-            <div class="event-card-content" (click)="onEventSelected(event)">
-              <p><strong>Title:</strong> {{ event?.title }}</p>
-              <p><strong>Start:</strong> {{ event?.start | date:'medium' }}</p>
-              <p><strong>End:</strong> {{ event?.end | date:'medium' }}</p>
+          <div class="hss-modal-body">
+            <div class="form-group">
+              <label>Event Title</label>
+              <input type="text" [(ngModel)]="newEvent().title" placeholder="Enter title...">
             </div>
-            <div class="event-card-actions">
-              <button (click)="$event.stopPropagation(); editEvent(event)" class="icon-btn edit"
-                title="Edit">✏️</button>
-              <button (click)="$event.stopPropagation(); deleteEvent(event.id)" class="icon-btn delete"
-                title="Delete">🗑️</button>
+            <div class="form-group">
+              <label>Start Date</label>
+              <input type="date" [(ngModel)]="newEvent().startDate" (ngModelChange)="onStartDateChange()">
             </div>
+            <div class="form-group" *ngIf="newEvent().startDate">
+              <label>End Date</label>
+              <input type="date" [(ngModel)]="newEvent().endDate" [min]="newEvent().startDate">
+            </div>
+            <div class="form-group">
+              <label>Event Color</label>
+              <input type="color" [(ngModel)]="newEvent().color">
+            </div>
+          </div>
+          <div class="hss-modal-footer">
+            <button (click)="toggleAddForm()" class="demo-btn secondary">Cancel</button>
+            <button (click)="addEvent()" class="demo-btn primary">{{ isEditing() ? 'Update Event' : 'Save Event'
+              }}</button>
           </div>
         </div>
-      </ng-container>
-    </div>
-  </main>
+      </div>
+      <hss-calendar [events]="events()" [config]="config()" (dateClicked)="onDateSelected($event)">
+      </hss-calendar>
+      <div class="demo-sidebar" *ngIf="selectedEvent() || selectedDateEvents()">
+        <ng-container *ngIf="selectedDateEvents()">
+          <h3>Events for {{ selectedDateEvents()?.date | date:'mediumDate' }}</h3>
+          <div class="events-list">
+            <div *ngIf="selectedDateEvents()?.events?.length === 0" class="no-events">
+              No events for this day.
+            </div>
+            <div *ngFor="let event of selectedDateEvents()?.events" class="event-card list-item"
+              [style.border-left]="'4px solid ' + event.backgroundColor">
+              <div class="event-card-content" (click)="onEventSelected(event)">
+                <p><strong>Title:</strong> {{ event?.title }}</p>
+                <p><strong>Start:</strong> {{ event?.start | date:'medium' }}</p>
+                <p><strong>End:</strong> {{ event?.end | date:'medium' }}</p>
+              </div>
+              <div class="event-card-actions">
+                <button (click)="$event.stopPropagation(); editEvent(event)" class="icon-btn edit"
+                  title="Edit">✏️</button>
+                <button (click)="$event.stopPropagation(); deleteEvent(event.id)" class="icon-btn delete"
+                  title="Delete">🗑️</button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </main>
+  </div>
 
+  <!-- Right Ad Column -->
+  <aside class="ad-column right-ad">
+    <a href="https://govenue.live/" target="_blank" class="ad-link">
+      <div class="ad-banner go-venue-banner">
+        <div class="ad-content">
+          <div class="gv-logo">
+            <img src="https://govenue.live/logo.svg" alt="GoVenue Logo">
+            <span class="gv-text">GoVenue</span>
+          </div>
+          <div class="gv-badge">#1 Venue Solution</div>
+          <h3 class="gv-title">Smart Venue Booking & Management</h3>
+          <p class="gv-desc">Manage resorts, halls, and bookings from one dashboard.</p>
+          <div class="gv-button">Request Demo</div>
+          <div class="gv-footer">govenue.live</div>
+        </div>
+      </div>
+    </a>
+  </aside>
 </div>
