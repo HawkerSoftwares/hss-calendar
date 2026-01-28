@@ -29,6 +29,10 @@ A lightweight, fully customizable, responsive, and Angular-native calendar libra
 - ⚡ **Signals**: Built using the latest Angular Signals for modern reactive state.
 - 📱 **Responsive**: Mobile-first design for a seamless cross-device experience.
 
+## 🎪 Live Demo
+
+Try the interactive demo: [https://hawkersoftwares.github.io/hss-calendar/](https://hawkersoftwares.github.io/hss-calendar/)
+
 ## 🛠 Installation
 
 ```bash
